@@ -1,31 +1,30 @@
-"use client"
+"use client";
 
+import { createContext, useReducer, useEffect, useContext } from "react";
 
-import { createContext, useReducer, useEffect } from "react"
-
-const CartContext = createContext()
+const CartContext = createContext();
 
 const loadInitialState = () => {
   if (typeof window !== "undefined") {
-    const saved = localStorage.getItem("cart")
+    const saved = localStorage.getItem("cart");
     try {
-      const parsed = saved ? JSON.parse(saved) : null
-      if (parsed && Array.isArray(parsed.items)) return parsed
-      return { items: [] }
+      const parsed = saved ? JSON.parse(saved) : null;
+      if (parsed && Array.isArray(parsed.items)) return parsed;
+      return { items: [] };
     } catch {
-      return { items: [] }
+      return { items: [] };
     }
   }
-  return { items: [] }
-}
+  return { items: [] };
+};
 
 const cartReducer = (state, action) => {
   switch (action.type) {
     case "ADD_ITEM": {
-      const itemToAdd = { ...action.payload, quantity: action.payload.quantity || 1 }
+      const itemToAdd = { ...action.payload, quantity: action.payload.quantity || 1 };
       const exists = state.items.find(
-        (i) => i.id === itemToAdd.id && (i.source === itemToAdd.source || (!i.source && !itemToAdd.source)),
-      )
+        (i) => i.id === itemToAdd.id && (i.source === itemToAdd.source || (!i.source && !itemToAdd.source))
+      );
 
       if (exists) {
         return {
@@ -33,11 +32,11 @@ const cartReducer = (state, action) => {
           items: state.items.map((i) =>
             i.id === itemToAdd.id && (i.source === itemToAdd.source || (!i.source && !itemToAdd.source))
               ? { ...i, quantity: i.quantity + itemToAdd.quantity }
-              : i,
+              : i
           ),
-        }
+        };
       }
-      return { ...state, items: [...state.items, itemToAdd] }
+      return { ...state, items: [...state.items, itemToAdd] };
     }
 
     case "INCREMENT":
@@ -46,9 +45,9 @@ const cartReducer = (state, action) => {
         items: state.items.map((i) =>
           i.id === action.payload.id && (i.source === action.payload.source || (!i.source && !action.payload.source))
             ? { ...i, quantity: i.quantity + 1 }
-            : i,
+            : i
         ),
-      }
+      };
 
     case "DECREMENT":
       return {
@@ -57,10 +56,10 @@ const cartReducer = (state, action) => {
           .map((i) =>
             i.id === action.payload.id && (i.source === action.payload.source || (!i.source && !action.payload.source))
               ? { ...i, quantity: i.quantity - 1 }
-              : i,
+              : i
           )
           .filter((i) => i.quantity > 0),
-      }
+      };
 
     case "REMOVE_ITEM":
       return {
@@ -70,22 +69,24 @@ const cartReducer = (state, action) => {
             !(
               i.id === action.payload.id &&
               (i.source === action.payload.source || (!i.source && !action.payload.source))
-            ),
+            )
         ),
-      }
+      };
 
     default:
-      return state
+      return state;
   }
-}
+};
 
 export const CartProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(cartReducer, {}, loadInitialState)
+  const [state, dispatch] = useReducer(cartReducer, {}, loadInitialState);
 
   useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(state))
-  }, [state])
+    localStorage.setItem("cart", JSON.stringify(state));
+  }, [state]);
 
-  return <CartContext.Provider value={{ cart: state, dispatch }}>{children}</CartContext.Provider>
-}
+  return <CartContext.Provider value={{ cart: state, dispatch }}>{children}</CartContext.Provider>;
+};
 
+// ✅ FIXED: Add useCart hook
+export const useCart = () => useContext(CartContext);
