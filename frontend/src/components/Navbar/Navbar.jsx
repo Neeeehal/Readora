@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X, User } from "lucide-react";
 import { useCart } from "../../CartContext/CartContext";
 import logo from "../../assets/logoicon.png"; // ✅ FIXED: remove `{ }` — it's a default import
-import { navbarStyles } from "../../assets/dummystyles"; // ✅ FIXED: keep curly braces only if it's a named export
+import { navbarStyles } from "../../assets/dummystyles.js"; // ✅ FIXED: keep curly braces only if it's a named export
 import { FaOpencart } from "react-icons/fa";
 import { navItems } from "../../assets/dummydata"; // ✅ just standard cleanup
 
