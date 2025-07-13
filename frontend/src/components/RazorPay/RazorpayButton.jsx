@@ -3,7 +3,7 @@ import React from 'react';
 const RazorpayButton = () => {
   const handlePayment = async () => {
     try {
-      const res = await fetch("http://localhost:3000/create-order", {
+      const res = await fetch("https://readora-backend.vercel.app/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
