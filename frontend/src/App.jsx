@@ -1,7 +1,7 @@
-// src/App.js
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { CartProvider } from './CartContext/CartContext';
+
 import Home from './pages/Home/Home';
 import CartPage from './pages/CartPage/CartPage';
 import AboutPage from './pages/AboutPage/AboutPage';
