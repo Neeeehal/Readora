@@ -1,5 +1,7 @@
 "use client"
 
+import { useCart } from "../../../CartContext/CartContext"
+
 import { createContext, useReducer, useEffect } from "react"
 
 const CartContext = createContext()
