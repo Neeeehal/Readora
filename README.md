@@ -1,4 +1,4 @@
-READORA
+READORA.
 
 A modern book selling platform built with React and Vite, featuring clean UI and integrated payment processing with Razorpay.
 Readora is a full-featured e-commerce platform specifically designed for book sales. The application provides an intuitive interface for customers 
