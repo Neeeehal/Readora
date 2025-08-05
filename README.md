@@ -40,16 +40,4 @@ Responsive Design - Mobile-first approach ensuring optimal viewing experience ac
 
 Adaptive layouts and touch-friendly interfaces enhance usability.
 
-Interactive UI Components - Smooth carousel sliders for featured books, image galleries for book previews, animated transitions,
-and micro-interactions that enhance user engagement.
 
-Toast Notifications - Real-time feedback system for user actions including successful purchases, cart updates, error handling, and system notifications.
-
-Order Management - Complete order tracking system from purchase to delivery with order history, status updates,
-and customer support integration.
-
-Admin Dashboard - Administrative interface for managing book inventory, processing orders, tracking sales analytics,
-and customer management.
-
-Search and Filtering - Advanced search functionality with auto-complete, category filters, price range selection,
-and sorting options by popularity, price, and ratings.
